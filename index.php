@@ -36,7 +36,7 @@
 		foreach ($tab as $value) {
 
 			$findMe = "w";
-			$search = strripos($value, $findMe);
+			$search = stripos($value, $findMe);
 
 			if (!$search === false) {
 				$count++;
@@ -59,7 +59,7 @@
 	<div>Question 1 : Ce dictionnaire comprend <?= $allWords ?> mots.</div>
 	<div>Question 2 : <?= fifteenCharacter($dico) ?> mots font exactement 15 caractères.</div>
 	<div>Question 3 : <?= wLetter($dico) ?> mots contiennent la lettre "w".</div>
-
+	
 </body>
 </html>
 
