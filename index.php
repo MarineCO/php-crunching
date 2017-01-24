@@ -1,12 +1,13 @@
 <?php 
 
-	$string = file_get_contents("dictionnaire.txt", FILE_USE_INCLUDE_PATH);
-	$dico = explode("\n", $string);
+// DICTIONNAIRE
+
+$string = file_get_contents("dictionnaire.txt", FILE_USE_INCLUDE_PATH);
+$dico = explode("\n", $string);
 
 
 	// Nombre de mots contenus dans le tableau correspondant au dictionnaire
 	$allWords = count($dico);
-	var_dump(count($dico));
 
 
 	// Nombre de mots de 15 caractères 
@@ -25,7 +26,6 @@
 		/* retourner le total du compteur après avoir passé tout le tableau en revue */
 		return $count;
 	}
-	var_dump(fifteenCharacter($dico));
 
 
 	//Nombre de mots contenant la lettre "w"
@@ -44,7 +44,6 @@
 		}
 		return $count;
 	}
-	var_dump(wLetter($dico));
 
 
 	// Nombre de mots finissant par la lettre "q"
@@ -64,9 +63,19 @@
 		return $count;
 	}
 
-	var_dump(qLetter($dico));
 
+// FILMS
 
+$string = file_get_contents("films.json", FILE_USE_INCLUDE_PATH);
+$brut = json_decode($string, true);
+$top = $brut["feed"]["entry"];
+
+	// Affichage du top 10 de la liste
+	function top10($tab) {
+		for ($i = 0; $i < 10; $i++) {
+			echo '<div>'.$tab[$i]['im:name']['label'].'</div>';
+		}
+	}
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -76,13 +85,19 @@
 </head>
 <body>
 	
-	<h1>Dictionnaire</h1>
+	<h2>Dictionnaire</h2>
 
 	<div>Question 1 : Ce dictionnaire comprend <?= $allWords ?> mots.</div>
 	<div>Question 2 : <?= fifteenCharacter($dico) ?> mots font exactement 15 caractères.</div>
 	<div>Question 3 : <?= wLetter($dico) ?> mots contiennent la lettre "w".</div>
 	<div>Question 4 : <?= qLetter($dico) ?> mots finissent par la lettre "q".</div>
 	
+
+	<h2>Liste de films</h2>
+	
+	<h3>Top 10 :</h3>
+	<div><?= top10($top); ?></div>
+
 </body>
 </html>
 
