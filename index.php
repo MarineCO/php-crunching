@@ -77,12 +77,10 @@ $top = $brut["feed"]["entry"];
 	function gravity($tab) {
 		for ($i = 0; $i < count($tab); $i++) {
 			if ($tab[$i]['im:name']['label'] === 'Gravity') {
-				$i;
+				return $i + 1;
 			}
 		}
-		return $i;
 	}
-	var_dump(gravity($top));
 
 
 ?><!DOCTYPE html>
@@ -107,12 +105,7 @@ $top = $brut["feed"]["entry"];
 		<h3>Top 10 : </h3>
 		<?= top10($top); ?>
 	</div>
-	<div><h3>Classement du film Gravity : </h3></div>
-
-
-	<div><h3>Réalisateur du film "The LEGO Movie" :</h3></div>
-	<div><h3>Nombre de films sortis avant 2000 :</h3></div>
-
+	<div><h3>Classement du film Gravity : </h3><?= gravity($top) ?>ème position</div>
 
 
 </body>
