@@ -82,6 +82,14 @@ $top = $brut["feed"]["entry"];
 		}
 	}
 
+	//Réalisateur du film "The LEGO Movie"
+	function realisateur($tab) {
+		for ($i = 0; $i < count($tab); $i++) {
+			if ($tab[$i]['im:name']['label'] === 'The LEGO Movie') {
+				return $tab[$i]['im:artist']['label'];
+			} 
+		}
+	}
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -107,6 +115,7 @@ $top = $brut["feed"]["entry"];
 	</div>
 	<div><h3>Classement du film Gravity : </h3><?= gravity($top) ?>ème position</div>
 
+	<div><h3>Réalisateur du film "The LEGO Movie" : </h3><?= realisateur($top); ?></div>
 
 </body>
 </html>
