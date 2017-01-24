@@ -46,6 +46,28 @@
 	}
 	var_dump(wLetter($dico));
 
+
+	// Nombre de mots finissant par la lettre "q"
+	function qLetter ($tab) {
+
+		$count = 0;
+
+		foreach($tab as $value) {
+
+			$findLastLetter = "q";
+			$searchQ = strripos($value, $findLastLetter);
+
+			if (!$searchQ === false) {
+				$count++;
+			}
+		}
+		return $count;
+	}
+
+	var_dump(qLetter($dico));
+
+
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,6 +81,7 @@
 	<div>Question 1 : Ce dictionnaire comprend <?= $allWords ?> mots.</div>
 	<div>Question 2 : <?= fifteenCharacter($dico) ?> mots font exactement 15 caractères.</div>
 	<div>Question 3 : <?= wLetter($dico) ?> mots contiennent la lettre "w".</div>
+	<div>Question 4 : <?= qLetter($dico) ?> mots finissent par la lettre "q".</div>
 	
 </body>
 </html>
