@@ -91,6 +91,21 @@ $top = $brut["feed"]["entry"];
 		}
 	}
 
+	//Nb de films sortis avant 2000
+	function before2000($tab) {
+		$count = 0;
+		foreach ($tab as $value) {
+			$releaseDate = $value['im:releaseDate']['label'];
+			$timestampReleaseDate = strtotime($releaseDate);
+			$timestampToCompare = strtotime('2000-01-01');
+			
+			if ($timestampReleaseDate < $timestampToCompare) {
+				$count++;
+			} 
+		}
+		return $count;
+	}
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -113,9 +128,12 @@ $top = $brut["feed"]["entry"];
 		<h3>Top 10 : </h3>
 		<?= top10($top); ?>
 	</div>
+
 	<div><h3>Classement du film Gravity : </h3><?= gravity($top) ?>ème position</div>
 
 	<div><h3>Réalisateur du film "The LEGO Movie" : </h3><?= realisateur($top); ?></div>
+
+	<div><h3>Nombre de films sortis avant 2000 : </h3><?= before2000($top); ?> films</div>
 
 </body>
 </html>
