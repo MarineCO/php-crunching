@@ -48,15 +48,11 @@ $dico = explode("\n", $string);
 
 	// Nombre de mots finissant par la lettre "q"
 	function qLetter ($tab) {
-
 		$count = 0;
-
 		foreach($tab as $value) {
+			$searchQ = substr($value, -1);
 
-			$findLastLetter = "q";
-			$searchQ = strripos($value, $findLastLetter);
-
-			if (!$searchQ === false) {
+			if ($searchQ === "q") {
 				$count++;
 			}
 		}
@@ -77,6 +73,18 @@ $top = $brut["feed"]["entry"];
 		}
 	}
 
+	//Classement du film Gravity
+	function gravity($tab) {
+		for ($i = 0; $i < count($tab); $i++) {
+			if ($tab[$i]['im:name']['label'] === 'Gravity') {
+				$i;
+			}
+		}
+		return $i;
+	}
+	var_dump(gravity($top));
+
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -95,8 +103,17 @@ $top = $brut["feed"]["entry"];
 
 	<h2>Liste de films</h2>
 	
-	<h3>Top 10 :</h3>
-	<div><?= top10($top); ?></div>
+	<div>
+		<h3>Top 10 : </h3>
+		<?= top10($top); ?>
+	</div>
+	<div><h3>Classement du film Gravity : </h3></div>
+
+
+	<div><h3>Réalisateur du film "The LEGO Movie" :</h3></div>
+	<div><h3>Nombre de films sortis avant 2000 :</h3></div>
+
+
 
 </body>
 </html>
