@@ -120,8 +120,13 @@ $top = $brut["feed"]["entry"];
 			
 			//print_r($tabDate);
 			$mostRecentMovie = current($tabDate);
-			echo $mostRecentMovie;
+			echo '<div>Le plus récent : '.$mostRecentMovie.'</div>';
+
+	//Film le + vieux
+			$oldestMovie = end($tabDate);	
+			echo '<div>Le plus vieux : '.$oldestMovie.'</div>';	
 	}
+
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -152,7 +157,7 @@ $top = $brut["feed"]["entry"];
 
 	<div><h3>Nombre de films sortis avant 2000 : </h3><?= before2000($top); ?> films</div>
 
-	<div><h3>Film le plus récent : </h3><?php mostRecentMovie($top); ?></div>
+	<div><h3>Film le plus récent et film le plus vieux : </h3><?php mostRecentMovie($top); ?></div>
 
 </body>
 </html>
