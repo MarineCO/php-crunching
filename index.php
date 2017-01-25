@@ -74,6 +74,7 @@ $top = $brut["feed"]["entry"];
 		}
 	}
 
+
 	//Classement du film Gravity
 	function gravity($tab) {
 		for ($i = 0; $i < count($tab); $i++) {
@@ -83,6 +84,7 @@ $top = $brut["feed"]["entry"];
 		}
 	}
 
+
 	//Réalisateur du film "The LEGO Movie"
 	function realisateur($tab) {
 		for ($i = 0; $i < count($tab); $i++) {
@@ -91,6 +93,7 @@ $top = $brut["feed"]["entry"];
 			} 
 		}
 	}
+
 
 	//Nb de films sortis avant 2000
 	function before2000($tab) {
@@ -106,6 +109,7 @@ $top = $brut["feed"]["entry"];
 		}
 		return $count;
 	}
+
 
 	//Film le + récent
 	function mostRecentMovie($tab) {
@@ -128,6 +132,7 @@ $top = $brut["feed"]["entry"];
 			echo '<div>Le plus vieux : '.$oldestMovie.'</div>';	
 	}
 
+
 	//Catégorie de films la plus représentée
 	function category($tab) {
 		$tabCategory = array();
@@ -143,6 +148,7 @@ $top = $brut["feed"]["entry"];
 			}
 		}
 	}
+
 
 	//Réalisateur le plus présent dans le top 100
 	function filmmaker($tab) {
@@ -160,6 +166,19 @@ $top = $brut["feed"]["entry"];
 		}
 	}
 
+
+	//Prix d'achat du top 10 sur iTunes
+	function buy($tab) {
+		$total = 0;
+		for ($i = 0; $i < 10; $i++) {
+			$price = $tab[$i]['im:price']['attributes']['amount'];
+			$total = $total + $price;
+		}
+		return $total;
+	}
+
+
+	
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -194,6 +213,9 @@ $top = $brut["feed"]["entry"];
 	<div><h3>Catégorie de films la plus représentée : </h3><?php category($top); ?></div>
 
 	<div><h3>Réalisateur le plus présent dans le top 100 : </h3><?php filmmaker($top); ?></div>
+
+	<div><h3>Prix d'achat du top 10 sur iTunes : </h3><?= buy($top); ?> euros</div>
+
 
 </body>
 </html>
