@@ -144,7 +144,21 @@ $top = $brut["feed"]["entry"];
 		}
 	}
 
-
+	//Réalisateur le plus présent dans le top 100
+	function filmmaker($tab) {
+		$tabDirector = array();
+		foreach ($tab as $key => $value) {
+			$filmmaker = $value['im:artist']['label'];
+			array_push($tabDirector, $filmmaker);
+		}
+			$nbOfReccurence = array_count_values($tabDirector);
+			$recurrenceMax = max($nbOfReccurence);
+		foreach ($nbOfReccurence as $key => $value) {
+			if ($value === $recurrenceMax) {
+				echo $key;
+			}
+		}
+	}
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -178,6 +192,8 @@ $top = $brut["feed"]["entry"];
 	<div><h3>Film le plus récent et film le plus vieux : </h3><?php mostRecentMovie($top); ?></div>
 
 	<div><h3>Catégorie de films la plus représentée : </h3><?php category($top); ?></div>
+
+	<div><h3>Réalisateur le plus présent dans le top 100 : </h3><?php filmmaker($top); ?></div>
 
 </body>
 </html>
