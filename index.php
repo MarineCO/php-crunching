@@ -128,7 +128,18 @@ $top = $brut["feed"]["entry"];
 			echo '<div>Le plus vieux : '.$oldestMovie.'</div>';	
 	}
 
-
+	//Catégorie de films la plus représentée
+	function category($tab) {
+		$tabCategory = array();
+		foreach ($tab as $key => $value) {
+			$category = $value['category']['attributes']['label'];
+			array_push($tabCategory, $category);
+		}
+			//print_r(array_count_values($tabCategory));
+			asort($tabCategory);
+			$mostPopularCategory = current($tabCategory);
+			echo $mostPopularCategory;
+	}
 
 
 ?><!DOCTYPE html>
@@ -162,7 +173,7 @@ $top = $brut["feed"]["entry"];
 
 	<div><h3>Film le plus récent et film le plus vieux : </h3><?php mostRecentMovie($top); ?></div>
 
-	
+	<div><h3>Catégorie de films la plus représentée : </h3><?php category($top); ?></div>
 
 </body>
 </html>
