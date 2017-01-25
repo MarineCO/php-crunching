@@ -135,11 +135,15 @@ $top = $brut["feed"]["entry"];
 			$category = $value['category']['attributes']['label'];
 			array_push($tabCategory, $category);
 		}
-			//print_r(array_count_values($tabCategory));
-			asort($tabCategory);
-			$mostPopularCategory = current($tabCategory);
-			echo $mostPopularCategory;
+			$nbOfRecurrence = array_count_values($tabCategory);
+			$recurrenceMax = max($nbOfRecurrence);
+		foreach ($nbOfRecurrence as $key => $value) {
+			if ($value === $recurrenceMax) {
+				echo $key;
+			}
+		}
 	}
+
 
 
 ?><!DOCTYPE html>
