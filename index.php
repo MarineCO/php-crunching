@@ -106,6 +106,23 @@ $top = $brut["feed"]["entry"];
 		return $count;
 	}
 
+	//Film le + récent
+	function mostRecentMovie($tab) {
+		foreach ($tab as $key => $value) {
+			$movie = $value['im:name']['label'];
+			$movies = explode('/', $movie);
+			//print_r($movies);
+			$title = $movies[0];
+			$releaseDate = $value['im:releaseDate']['label'];
+			$tabDate[$releaseDate] =  $title;
+		}
+			krsort($tabDate);
+			
+			//print_r($tabDate);
+			$mostRecentMovie = current($tabDate);
+			echo $mostRecentMovie;
+	}
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -134,6 +151,8 @@ $top = $brut["feed"]["entry"];
 	<div><h3>Réalisateur du film "The LEGO Movie" : </h3><?= realisateur($top); ?></div>
 
 	<div><h3>Nombre de films sortis avant 2000 : </h3><?= before2000($top); ?> films</div>
+
+	<div><h3>Film le plus récent : </h3><?php mostRecentMovie($top); ?></div>
 
 </body>
 </html>
