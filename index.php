@@ -178,7 +178,19 @@ $top = $brut["feed"]["entry"];
 	}
 
 
-	
+	//Prix de location du top 10 sur Itunes
+	function rental($tab) {
+		$total = 0;
+		for ($i = 0; $i < 10; $i++) {
+			if (isset($tab[$i]['im:rentalPrice'])){
+				$price = $tab[$i]['im:rentalPrice']['attributes']['amount'];
+				$total = $total + $price;
+			}
+		}
+		//print_r($total);
+		return $total;
+	}
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -216,6 +228,7 @@ $top = $brut["feed"]["entry"];
 
 	<div><h3>Prix d'achat du top 10 sur iTunes : </h3><?= buy($top); ?> euros</div>
 
+	<div><h3>Prix de location du top 10 sur iTunes : </h3><?= rental($top); ?> euros</div>
 
 </body>
 </html>
