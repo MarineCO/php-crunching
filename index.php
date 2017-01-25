@@ -69,7 +69,8 @@ $top = $brut["feed"]["entry"];
 	// Affichage du top 10 de la liste
 	function top10($tab) {
 		for ($i = 0; $i < 10; $i++) {
-			echo '<div>'.$tab[$i]['im:name']['label'].'</div>';
+			$ii = $i + 1;
+			echo '<div>'.$ii.'. '.$tab[$i]['im:name']['label'].'</div>';
 		}
 	}
 
@@ -128,6 +129,8 @@ $top = $brut["feed"]["entry"];
 	}
 
 
+
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -158,6 +161,8 @@ $top = $brut["feed"]["entry"];
 	<div><h3>Nombre de films sortis avant 2000 : </h3><?= before2000($top); ?> films</div>
 
 	<div><h3>Film le plus récent et film le plus vieux : </h3><?php mostRecentMovie($top); ?></div>
+
+	
 
 </body>
 </html>
